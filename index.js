@@ -35,6 +35,7 @@ bot.on('message', async msg => {
         });
     } else if (msgCont === "cat" || msgCont === "meow") {
         let response = await (await fetch(meowUrl,catApiHeaders)).json();
+        //todo sometimes it cannot process the file?
         msg.channel.send({
             files: [response[0].url]
         });
