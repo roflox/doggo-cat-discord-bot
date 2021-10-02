@@ -1,7 +1,6 @@
 require('dotenv').config();
 const Discord = require('discord.js');
-const {Intents} = require("discord.js");
-const bot = new Discord.Client({intents: [Intents.FLAGS.DIRECT_MESSAGES, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILDS]});
+const bot = new Discord.Client();
 const TOKEN = process.env.TOKEN;
 
 bot.login(TOKEN);
@@ -31,7 +30,7 @@ bot.on('message', msg => {
         })
     } else if(msgCont === "doggo"){
         msg.channel.send({
-            files: [{
+            files:  [{
                 attachment: 'animals/doggo.png',
                 name: 'doggo.png'
             }]
