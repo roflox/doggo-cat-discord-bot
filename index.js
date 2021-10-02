@@ -35,7 +35,6 @@ bot.on('message', async msg => {
         });
     } else if (msgCont === "cat" || msgCont === "meow") {
         let response = await (await fetch(meowUrl,catApiHeaders)).json();
-        console.log(response)
         msg.channel.send({
             files: [response[0].url]
         });
