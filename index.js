@@ -28,12 +28,12 @@ bot.on('message', async msg => {
     const msgCont = msg.content.toLowerCase()
     // console.log(msgCont);
 
-    if (msgCont === "doggo") {
+    if (msgCont === "doggo" || msgCont === "woof") {
         let response = await (await fetch(doggoUrl)).json();
         msg.channel.send({
             files: [response.message]
         });
-    } else if (msgCont === "meow") {
+    } else if (msgCont === "cat" || msgCont === "meow") {
         let response = await (await fetch(meowUrl,catApiHeaders)).json();
         console.log(response)
         msg.channel.send({
