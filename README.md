@@ -1,4 +1,7 @@
-# doggo-cat-bot
+# doggo-cat-discord-bot
+This is simple discord bot that will send you a random dog or cat picture into chat room.
+
+All you need is free Heroku dyno and API keys for dogs and cats api.
 
 # License  
  DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
