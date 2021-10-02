@@ -1,12 +1,16 @@
 require('dotenv').config();
+const fs = require('fs');
 const Discord = require('discord.js');
 const fetch = require("node-fetch");
 const bot = new Discord.Client();
 const TOKEN = process.env.TOKEN;
-const doggoUrl = 'https://dog.ceo/api/breeds/image/random';
-const meowUrl = "https://api.thecatapi.com/v1/images/search?include_breeds=true";
+const dogApi = 'https://api.thedogapi.com/v1/images/search';
+const catApi = "https://api.thecatapi.com/v1/images/search";
 const catApiHeaders = {
     'X-API-KEY': process.env.CAT_API_KEY
+}
+const dogApiHeaders = {
+    'X-API-KEY': process.env.DOG_API_KEY
 }
 
 
@@ -24,20 +28,22 @@ bot.on('ready', () => {
     });
 });
 
+const sendImageFromApiToMessageChannel = async (msg, url , headers) => {
+    let response = (await (await fetch(url, headers)).json())[0];
+    console.log()
+    msg.channel.send({
+        files: [response.url]
+    });
+}
+
 bot.on('message', async msg => {
     const msgCont = msg.content.toLowerCase()
     // console.log(msgCont);
 
     if (msgCont === "doggo" || msgCont === "woof") {
-        let response = await (await fetch(doggoUrl)).json();
-        msg.channel.send({
-            files: [response.message]
-        });
+        sendImageFromApiToMessageChannel(msg, dogApi, dogApiHeaders);
     } else if (msgCont === "cat" || msgCont === "meow") {
-        let response = await (await fetch(meowUrl,catApiHeaders)).json();
-        //todo sometimes it cannot process the file?
-        msg.channel.send({
-            files: [response[0].url]
-        });
+        sendImageFromApiToMessageChannel(msg, catApi, catApiHeaders);
     }
 });
+
