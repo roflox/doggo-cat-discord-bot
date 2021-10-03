@@ -22,7 +22,7 @@ bot.on('ready', () => {
     bot.user.setPresence({
         status: "online",  //You can show online, idle....
         game: {
-            name: "4 our Noxwaifu",  //The message shown
+            name: "Type woof or meow",  //The message shown
             type: "PLAYING" //PLAYING: WATCHING: LISTENING: STREAMING:
         }
     });
@@ -42,7 +42,7 @@ bot.on('message', async msg => {
 
     if (msgCont === "doggo" || msgCont === "woof") {
         sendImageFromApiToMessageChannel(msg, dogApi, dogApiHeaders);
-    } else if (msgCont === "cat" || msgCont === "meow") {
+    } else if (msgCont === "kitty" || msgCont === "meow") {
         sendImageFromApiToMessageChannel(msg, catApi, catApiHeaders);
     }
 });
